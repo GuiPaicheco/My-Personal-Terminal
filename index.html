@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Meu Terminal</title>
+  <link rel="stylesheet" href="style.css">
+  <!---->
+</head>
+<body>
+  <!-- Janela do terminal -->
+  <div class="window" role="application" aria-label="Terminal de treino">
+
+    <!-- barra superior decorativa -->
+    <div class="titlebar">
+      <div class="dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <div class="meta">Terminal JS - Pessoal</div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="content" id="history" aria-live="polite"></div>
+    <script>
+    window.addEventListener("load", () => {
+        print("Terminal JS versão 1.0 - Criado por Paicheco", "info");
+    });
+    </script>
+
+    <!-- linha de input: prompt + input real + cursor visual -->
+    <div class="inputbar">
+      <div class="prompt">Paicheco:</div>
+      <input id="cmdline" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <div class="fake-cursor" aria-hidden="true"></div>
+      <button id="sendbtn" class="send-btn">Enviar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
