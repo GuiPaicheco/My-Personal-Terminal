@@ -11,7 +11,7 @@ const historyBox = document.getElementById("history");
 // -----------------------------------------------------------------------
 
 // Comandos disponíveis para autocomplete
-const COMMANDS = ["help", "clear", "time", "soma", "sub"];
+const COMMANDS = ["help", "clear", "time", "sum", "sub", "mult", "div"];
 
 // Histórico em memória (e persistente no navegador)
 let history = JSON.parse(localStorage.getItem("terminal_history") || "[]");
@@ -51,8 +51,10 @@ function cmd_help() {
     print("  help       → lista comandos");
     print("  clear      → limpa terminal");
     print("  time       → mostra horário atual");
-    print("  soma a b   → soma dois números");
+    print("  sum a b    → soma dois números");
     print("  sub a b    → subtrai dois números");
+    print("  mult a b   → multiplica dois números");
+    print("  div a b   → divide dois números");
 }
 
 function cmd_clear() {
@@ -61,10 +63,13 @@ function cmd_clear() {
 
 function cmd_time() {
     const now = new Date();
-    print("Hora atual: " + now.toLocaleString());
+    const data = now.toLocaleDateString();
+    const hora = now.toLocaleTimeString();
+
+    print(`Data: ${data}\nHora atual: ${hora}`);
 }
 
-function cmd_soma(args) {
+function cmd_sum(args) {
     if (args.length < 2) return print("Uso: soma 5 3", "error");
     const a = Number(args[0]);
     const b = Number(args[1]);
@@ -80,6 +85,21 @@ function cmd_sub(args) {
     print(`${a} - ${b} = ${a - b}`);
 }
 
+function cmd_mult(args) {
+    if (args.length < 2) return print("Uso: mult 10 2", "error");
+    const a = Number(args[0]);
+    const b = Number(args[1]);
+    if (isNaN(a) || isNaN(b)) return print("Use números válidos.", "error");
+    print(`${a} * ${b} = ${a * b}`);
+}
+
+function cmd_div(args) {
+    if (args.length < 2) return print("Uso: div 10 2", "error");
+    const a = Number(args[0]);
+    const b = Number(args[1]);
+    if (isNaN(a) || isNaN(b)) return print("Use números válidos.", "error");
+    print(`${a} / ${b} = ${a / b}`);
+}
 // -----------------------------------------------------------------------
 // 4. INTERPRETADOR
 // -----------------------------------------------------------------------
@@ -97,8 +117,10 @@ function execute(raw) {
         case "help": cmd_help(); break;
         case "clear": cmd_clear(); break;
         case "time": cmd_time(); break;
-        case "soma": cmd_soma(args); break;
+        case "sum": cmd_sum(args); break;
         case "sub":  cmd_sub(args); break;
+        case "mult":  cmd_mult(args); break;
+        case "div":  cmd_div(args); break;
         default:
             print("Comando não encontrado. Digite 'help'.", "error");
     }

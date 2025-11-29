@@ -13,7 +13,7 @@ body{
     display: flex; /* centraliza a tela */
     align-items: center; /* centro vertical */
     justify-content: center; /* centro horizontal */
-    background: linear-gradient(180deg,#0b6623,#6bdE75); /* fundo agradável */
+    background: linear-gradient(180deg,#00115e,#00328f); /* fundo agradável */
     font-family: Consolas, "Courier New", monospace;
     -webkit-font-smoothing: antialiased;
     padding: 20px;
@@ -30,12 +30,24 @@ Janela do 'Terminal' (estética de CMD)
     background: #000;            /* fundo preto do terminal */
     color: #0f0;                /* verde típico */
     border-radius: 8px;
-    border: 2px solid #222;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    border: 1px solid #222;
+    animation: brilho 2s infinite alternate ease-in;
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
+
+@keyframes brilho {
+    0% {
+        box-shadow: 0 10px 40px rgba(255, 0, 0, 100);
+    }
+    50%{
+        box-shadow: 0 10px 50px rgba(0, 255, 0, 100);
+    }
+    100% {
+        box-shadow: 0 10px 60px rgba(255, 255, 255, 100);
+    }
+}   
 
 /* uma pequena barra superior para decorar (botões fictícios) */
 .titlebar {
